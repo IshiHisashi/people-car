@@ -12,10 +12,14 @@ export const personResolvers = {
   Mutation: {
     createPerson: (_, args) => {
       const newPerson = {
-        ...args.person,
         id: String(data.people.length + 1),
+        firstName: args.firstName,
+        lastName: args.lastName,
+        cars: [],
       };
       data.people.push(newPerson);
+
+      return newPerson;
     },
 
     updatePerson: (_, args) => {

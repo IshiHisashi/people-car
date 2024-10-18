@@ -42,12 +42,14 @@ const Records = () => {
   } = useQuery(GET_CARS);
 
   useEffect(() => {
+    console.log("exe people retrieval");
     if (dataPeople && dataPeople.getPeople) {
       setPeople(dataPeople.getPeople);
     }
   }, [dataPeople, people, setPeople]);
 
   useEffect(() => {
+    console.log("exe car retrieval");
     if (dataCars && dataCars.getCars) {
       setCars(dataCars.getCars);
     }

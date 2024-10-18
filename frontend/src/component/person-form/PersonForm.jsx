@@ -3,16 +3,7 @@ import Input from "../common/Input.jsx";
 import { Button } from "antd";
 import { GlobalContext } from "../../context/GlobalContext.js";
 import { gql, useMutation } from "@apollo/client";
-
-const CREATE_PERSON = gql`
-  mutation createPerson($firstName: String!, $lastName: String!) {
-    createPerson(firstName: $firstName, lastName: $lastName) {
-      id
-      firstName
-      lastName
-    }
-  }
-`;
+import { CREATE_PERSON } from "../../utils/mutations.js";
 
 const PersonForm = () => {
   const [formData, setFormData] = useState({ firstName: "", lastName: "" });

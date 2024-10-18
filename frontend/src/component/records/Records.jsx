@@ -1,30 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import PersonCard from "./PersonCard";
 import { GlobalContext } from "../../context/GlobalContext.js";
-import { gql, useQuery } from "@apollo/client";
-
-const GET_PEOPLE = gql`
-  query {
-    getPeople {
-      id
-      firstName
-      lastName
-    }
-  }
-`;
-
-const GET_CARS = gql`
-  query {
-    getCars {
-      id
-      make
-      model
-      year
-      price
-      personId
-    }
-  }
-`;
+import { useQuery } from "@apollo/client";
+import { GET_PEOPLE, GET_CARS } from "../../utils/queries";
 
 const Records = () => {
   const { people, setPeople } = useContext(GlobalContext);

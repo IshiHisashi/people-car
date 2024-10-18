@@ -13,12 +13,17 @@ export const carResolvers = {
     },
   },
   Mutation: {
-    createCar: (_, args) => {
+    createCar: (_, { year, make, model, price, personId }) => {
       const newCar = {
-        ...args.car,
         id: String(data.cars.length + 1),
+        year,
+        make,
+        model,
+        price,
+        personId,
       };
       data.cars.push(newCar);
+      return newCar;
     },
 
     updateCar: (_, args) => {

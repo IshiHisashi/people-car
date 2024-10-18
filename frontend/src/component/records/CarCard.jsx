@@ -1,8 +1,8 @@
 import React from "react";
 import { Card } from "antd";
 
-const CarCard = () => {
-  const titleText = `2019 Toyota Carolla => $40,000`;
+const CarCard = ({ car }) => {
+  const titleText = `${car.year} ${car.make} ${car.model} => $${car.price}`;
 
   return (
     <Card type="inner" title={titleText} className="text-start">

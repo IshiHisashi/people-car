@@ -13,16 +13,45 @@ const GET_PEOPLE = gql`
   }
 `;
 
+const GET_CARS = gql`
+  query {
+    getCars {
+      id
+      make
+      model
+      year
+      price
+      personId
+    }
+  }
+`;
+
 const Records = () => {
   const { people, setPeople } = useContext(GlobalContext);
   const { cars, setCars } = useContext(GlobalContext);
-  const { loadingPeople, errorPeople, data: dataPeople } = useQuery(GET_PEOPLE);
+  const {
+    loading: loadingPeople,
+    error: errorPeople,
+    data: dataPeople,
+  } = useQuery(GET_PEOPLE);
+
+  const {
+    loading: loadingCars,
+    error: errorCars,
+    data: dataCars,
+  } = useQuery(GET_CARS);
 
   useEffect(() => {
     if (dataPeople && dataPeople.getPeople) {
       setPeople(dataPeople.getPeople);
     }
   }, [dataPeople, people, setPeople]);
+
+  useEffect(() => {
+    if (dataCars && dataCars.getCars) {
+      setCars(dataCars.getCars);
+    }
+  }, [dataCars, cars, setCars]);
 
   return (
     <div className="flex flex-col gap-6">

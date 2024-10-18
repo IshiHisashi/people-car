@@ -2,40 +2,17 @@ import React, { useContext, useState, useEffect } from "react";
 import CarCard from "./CarCard";
 import { Card } from "antd";
 import { gql, useQuery } from "@apollo/client";
-
-const GET_CARS_BY_USER_ID = gql`
-  query getCarsByUserID($personId: ID!) {
-    getCarsByUserID(personId: $personId) {
-      id
-      make
-      model
-      year
-      price
-    }
-  }
-`;
+import { GlobalContext } from "../../context/GlobalContext";
 
 const PersonCard = ({ person }) => {
-  const [cars, setCars] = useState([]);
-  const {
-    loading: loadingCars,
-    error: errorCars,
-    data: carsData,
-  } = useQuery(GET_CARS_BY_USER_ID, {
-    variables: { personId: person.id },
-  });
+  const { cars } = useContext(GlobalContext);
 
-  useEffect(() => {
-    if (carsData && carsData.getCarsByUserID) {
-      setCars(carsData.getCarsByUserID);
-    }
-  }, [carsData, setCars]);
-
+  const personCars = cars.filter((car) => car.personId === person.id);
   const titleText = `${person.firstName} ${person.lastName}`;
   return (
     <Card title={titleText} className="text-start">
-      {cars.map((car) => (
-        <CarCard car={car} />
+      {personCars.map((car, index) => (
+        <CarCard car={car} key={index} />
       ))}
       <p className="mt-4 text-blue-500 font-medium">Learn more</p>
     </Card>

@@ -20,8 +20,8 @@ const PersonPage = () => {
       <Card title={titleText} className="bg-slate-200">
         <div className="flex flex-col gap-4">
           {data?.personWithCars.cars.length > 0 ? (
-            data?.personWithCars.cars.map((car) => (
-              <Card>
+            data?.personWithCars.cars.map((car, index) => (
+              <Card key={index}>
                 <p className="text-xl">{`${car.year} ${car.make} ${car.model}`}</p>
                 <p className="text-lg">{`Price: ${formatCurrency(
                   car.price

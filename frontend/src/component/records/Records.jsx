@@ -3,6 +3,7 @@ import PersonCard from "./PersonCard";
 import { GlobalContext } from "../../context/GlobalContext.js";
 import { useQuery } from "@apollo/client";
 import { GET_PEOPLE, GET_CARS } from "../../utils/queries";
+import { Spin } from "antd";
 
 const Records = () => {
   const { people, setPeople } = useContext(GlobalContext);
@@ -20,18 +21,19 @@ const Records = () => {
   } = useQuery(GET_CARS);
 
   useEffect(() => {
-    console.log("exe people retrieval");
     if (dataPeople && dataPeople.getPeople) {
       setPeople(dataPeople.getPeople);
     }
   }, [dataPeople, people, setPeople]);
 
   useEffect(() => {
-    console.log("exe car retrieval");
     if (dataCars && dataCars.getCars) {
       setCars(dataCars.getCars);
     }
   }, [dataCars, cars, setCars]);
+
+  if (loadingCars || loadingPeople) return <Spin />;
+  if (errorCars || errorPeople) return <p>Error</p>;
 
   return (
     <div className="flex flex-col gap-6">

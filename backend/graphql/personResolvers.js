@@ -8,6 +8,17 @@ export const personResolvers = {
     getPerson: (_, { id }) => {
       return data.people.find((person) => person.id === id);
     },
+    personWithCars: (_, { id }) => {
+      const person = data.people.find((person) => person.id === id);
+      if (!person) {
+        throw new Error("Person with that id not found");
+      }
+      const personCars = data.cars.filter((car) => car.personId === id);
+      return {
+        ...person,
+        cars: personCars,
+      };
+    },
   },
   Mutation: {
     createPerson: (_, args) => {

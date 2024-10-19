@@ -23,6 +23,7 @@ export const typeDefs = gql`
     getCarsByUserID(personId: ID!): [Car]
     getPeople: [Person]
     getPerson(id: ID): Person
+    personWithCars(id: ID!): Person
   }
 
   type Mutation {

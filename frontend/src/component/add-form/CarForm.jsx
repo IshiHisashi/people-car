@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import Input from "../common/Input.jsx";
-import { Button, Select } from "antd";
+import { Button, Select, Spin } from "antd";
 import { GlobalContext } from "../../context/GlobalContext.js";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { GET_CARS } from "../../utils/queries.js";
 import { CREATE_CAR } from "../../utils/mutations.js";
 
@@ -51,6 +51,9 @@ const CarForm = () => {
       },
     });
   };
+
+  if (loading) return <Spin />;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div className="flex flex-col gap-6">
@@ -119,7 +122,7 @@ const CarForm = () => {
             !formData.personId
           }
         >
-          {loading ? "Adding..." : "Add Car"}
+          Add Car
         </Button>
       </div>
     </div>

@@ -22,3 +22,20 @@ export const GET_CARS = gql`
     }
   }
 `;
+
+export const PERSON_WITH_CARS = gql`
+  query personWithCars($id: ID!) {
+    personWithCars(id: $id) {
+      id
+      firstName
+      lastName
+      cars {
+        id
+        year
+        make
+        model
+        price
+      }
+    }
+  }
+`;

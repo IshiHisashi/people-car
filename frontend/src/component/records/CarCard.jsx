@@ -6,15 +6,8 @@ import { DELETE_CAR, UPDATE_CAR } from "../../utils/mutations.js";
 import { GET_CARS } from "../../utils/queries.js";
 import Input from "../common/Input.jsx";
 import { GlobalContext } from "../../context/GlobalContext";
+import { formatCurrency } from "../../utils/fnc.js";
 const { Option } = Select;
-
-const formatCurrency = (value) => {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 0,
-  }).format(value);
-};
 
 const CarCard = ({ car }) => {
   const { people } = useContext(GlobalContext);

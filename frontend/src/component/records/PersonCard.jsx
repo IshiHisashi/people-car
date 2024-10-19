@@ -1,4 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import CarCard from "./CarCard";
 import { Card, message, Modal, Button } from "antd";
 import { GlobalContext } from "../../context/GlobalContext";
@@ -70,7 +71,11 @@ const PersonCard = ({ person }) => {
           <CarCard car={car} key={index} />
         ))}
         <div className="flex justify-between mt-6">
-          <p className=" text-blue-500 font-medium">Learn more</p>
+          <Link to={`/people/${person.id}`}>
+            <p className=" text-blue-500 font-medium cursor-pointer">
+              Learn more
+            </p>
+          </Link>
           <div className="flex gap-16">
             <EditOutlined
               className="text-lg cursor-pointer"

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import Input from "../common/Input.jsx";
-import { Button } from "antd";
+import { Button, Spin } from "antd";
 import { GlobalContext } from "../../context/GlobalContext.js";
 import { gql, useMutation } from "@apollo/client";
 import { CREATE_PERSON } from "../../utils/mutations.js";
@@ -49,6 +49,9 @@ const PersonForm = () => {
       },
     });
   };
+
+  if (loading) return <Spin />;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div className="flex flex-col gap-6">
